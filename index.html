@@ -72,7 +72,7 @@ body {font-family: Arial, Helvetica, sans-serif;}
 	position: absolute;
 	bottom: 12px;
 	right: 20px;
-	background: url(https://genesysnick.github.io/images/hackathon-widget-button.png);
+	background: url(https://genesysnick.github.io/modal-box-widget/images/hackathon-widget-button.png);
 	border: none;
 	width: 58px;
 	height: 58px;
@@ -118,15 +118,15 @@ button {
 </head>
 <body>
 <div id="header">
-<h2>Genesys Hackathon 2022 Example</h2>
+<h2>Genesys Widget with Modal Box Example</h2>
 </div>
 <div id="topic">
-<h3>Messenger - Floating Quick Replies</h3>
-<p>Goal: Drive more conversation starts by displaying floating Quick Replies outside of Messenger, enticing the customer to begin a conversation</p>
-<h3>Current state:</h3>
-<p>Messenger has Conversation Auto-start in Beta and releasing GA on September 14th. When Auto-start is enabled, as soon as Messenger is opened <br>a "Customer joined" event is sent behind the scenes, triggering the inbound message flow. Most commonly, the first action in the flow is a bot reply of some sort.</p>
-<h3>Idea:</h3>
-<p>HMW display the initial question+Quick Reply buttons of the bot flow outside of Messenger, before the user has opened Messenger. <br>By "starting" the conversation outside of Messenger, customers may be more likely to start the conversation when they otherwise may not have.</p>
+<h3>Sample Text</h3>
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+<h3>Sample Text 2</h3>
+<p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+<h3>Sample Text 3</h3>
+<p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
 </div>
 <div id="modal">
   <div class="modalcontent">
@@ -145,10 +145,6 @@ button {
 </div>
 
 <script>
-window.onload = function () {
-  if (sessionStorage.getItem("modal") === "none") {
-    document.getElementById("modal").style.display = "none";
-  }
   document.getElementById("close").onclick = function () {
     document.getElementById("modal").style.display = "none";
     sessionStorage.setItem("modal", "none");
