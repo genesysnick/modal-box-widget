@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" crossorigin="anonymous" />
+<style>
+body {font-family: Arial, Helvetica, sans-serif;}
+
+#modal {
+  font-family: Arial, sans-serif;
+  letter-spacing: 3px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.377);
+  z-index: 99999;
+  height: 100%;
+  width: 100%;
+}
+.modalcontent {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #fff;
+  width: min(90%, 500px);
+  padding: 20px;
+}
+
+#modallogo {
+  margin-top: 24px;
+}
+
+.modalheading {
+  font-weight: 400;
+}
+
+.close-modal {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  transition: 0.5s;
+  font-size: 20px;
+}
+.close-modal:hover {
+  color: #a9a9a9;
+}
+
+.modalButton {
+  font-family: Arial, sans-serif;
+  transition: 0.5s;
+  background-color: #ffffff;
+  border: 1px solid #000000;
+  display: flex;
+  cursor: pointer;
+  color: #000000;
+  font-size: 14px;
+  padding: 16px 31px;
+  margin-bottom: 10px;
+  text-decoration: none;
+}
+.modalButton:hover {
+  color: #ffffff;
+  background-color: #000000;
+}
+.modalButton:active {
+  position: relative;
+  top: 1px;
+}
+
+#hackathon-widget-button {
+	position: absolute;
+	bottom: 12px;
+	right: 20px;
+	background: url(https://genesysnick.github.io/images/hackathon-widget-button.png);
+	border: none;
+	width: 58px;
+	height: 58px;
+	cursor: pointer;
+	box-shadow: 0px 3px 5px -1px rgb(0 0 0 / 20%), 0px 6px 10px 0px rgb(0 0 0 / 14%), 0px 1px 18px 0px rgb(0 0 0 / 12%);
+	transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,border 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+	border-radius: 50%!important;
+	font-weight: 500;
+    line-height: 1.75;
+}
+.cx-messenger-container {
+    bottom: 86px !important;
+}
+.cx-messenger {
+    bottom: 86px !important;
+}
+button {
+    margin-bottom: 10px;
+	cursor: pointer;
+	background-color: #fff;
+}
+#header {
+	background-color: #ffffff;
+}
+#topic {
+	background-color: #23395d;
+	background-image: url(https://genesysnick.github.io/images/flair-navy-lite-huge-curtain.svg);
+	width: 100%;
+	height: 100%;
+	padding-top: 20px;
+	padding-bottom: 20px;
+	padding-left: 20px;
+	left: 0;
+	top: 0;
+}
+#topic h3 {
+    color: #ff4f1f;
+}
+#topic p {
+    color: #fff;
+}
+</style>
+</head>
+<body>
+<div id="header">
+<h2>Genesys Hackathon 2022 Example</h2>
+</div>
+<div id="topic">
+<h3>Messenger - Floating Quick Replies</h3>
+<p>Goal: Drive more conversation starts by displaying floating Quick Replies outside of Messenger, enticing the customer to begin a conversation</p>
+<h3>Current state:</h3>
+<p>Messenger has Conversation Auto-start in Beta and releasing GA on September 14th. When Auto-start is enabled, as soon as Messenger is opened <br>a "Customer joined" event is sent behind the scenes, triggering the inbound message flow. Most commonly, the first action in the flow is a bot reply of some sort.</p>
+<h3>Idea:</h3>
+<p>HMW display the initial question+Quick Reply buttons of the bot flow outside of Messenger, before the user has opened Messenger. <br>By "starting" the conversation outside of Messenger, customers may be more likely to start the conversation when they otherwise may not have.</p>
+</div>
+<div id="modal">
+  <div class="modalcontent">
+    <h2>Hello!</h2>
+    <form action="/action_page.php">
+  <label for="user-select">What would you like to chat about?</label>
+  <select name="user-select" id="user-select">
+    <option value="income">Income Maintenance</option>
+    <option value="child">Child Support</option>
+  </select>
+  <br><br>
+  <input type="submit" value="Start Chat">
+</form>
+    <i id="close" class="close-modal fas fa-times"></i>
+  </div>
+</div>
+
+<script>
+window.onload = function () {
+  if (sessionStorage.getItem("modal") === "none") {
+    document.getElementById("modal").style.display = "none";
+  }
+  document.getElementById("close").onclick = function () {
+    document.getElementById("modal").style.display = "none";
+    sessionStorage.setItem("modal", "none");
+  };
+};
+<script type="text/javascript" charset="utf-8">
+  (function (g, e, n, es, ys) {
+    g['_genesysJs'] = e;
+    g[e] = g[e] || function () {
+      (g[e].q = g[e].q || []).push(arguments)
+    };
+    g[e].t = 1 * new Date();
+    g[e].c = es;
+    ys = document.createElement('script'); ys.async = 1; ys.src = n; ys.charset = 'utf-8'; document.head.appendChild(ys);
+  })(window, 'Genesys', 'https://apps.usw2.pure.cloud/genesys-bootstrap/genesys.min.js', {
+    environment: 'usw2',
+    deploymentId: '56a5ee61-841f-4ef3-9025-b1ef401ac27d'
+  });
+</script>
+<button id="hackathon-widget-button" onClick="toggleMessenger()"></button>
+<script type="text/javascript">
+  function toggleMessenger(){
+    Genesys("command", "Messenger.open", {},
+      function(o){},  // if resolved
+      function(o){    // if rejected
+        Genesys("command", "Messenger.close");
+      }
+    );
+  }
+</script>
+</body>
+</html>
