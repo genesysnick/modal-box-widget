@@ -72,7 +72,6 @@ body {font-family: Arial, Helvetica, sans-serif;}
 	background: url(https://genesysnick.github.io/modal-box-widget/images/dss-chatbot-button.png);
 	float: right;
     display: block;
-    background-image: url(/modules/custom/mogov_suite/modules/mogov_3ps/modules/mogov_3ps_genesys/img/chatbot-button.png);
     width: 360px;
     height: 63px;
     border: hidden;
@@ -163,7 +162,7 @@ button {
     deploymentId: '56a5ee61-841f-4ef3-9025-b1ef401ac27d'
   });
 </script>
-<button id="hackathon-widget-button" onClick="toggleMessenger()"></button>
+<button id="hackathon-widget-button" data-toggle="modal"></button>
 <script type="text/javascript">
   function toggleMessenger(){
     Genesys("command", "Messenger.open", {},
