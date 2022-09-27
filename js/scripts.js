@@ -26,30 +26,20 @@
 
 window.genesys_checker = null;
 
-(function () {
-	const cohorts = "interestCohort";
-	const documentProto = Document.prototype;
-	const flocSupported = cohorts in documentProto;
-
-	if (!flocSupported) {
-		return;
-	}
-
-	const descriptor = Object.getOwnPropertyDescriptor(documentProto, cohorts);
-	const writable = descriptor && descriptor.writable;
-	if (writable) {
-		const proxy = new Proxy(documentProto[cohorts], { apply: () => Promise.reject() });
-		const config = {
-			writable: false,
-			value: proxy,
-			configurable: false,
-			enumerable: false,
-		};
-		Object.defineProperty(documentProto, cohorts, config);
-	}
-})();
-
 $(document).ready( function() {
+	(async() => {
+		while( $('script[src$="/messenger.min.js"]').length == 0 && $('script[src$="/genesysvendors.min.js"]').length == 0 ) {
+		// while( !window.hasOwnProperty( "Genesys" ) ) {
+			await new Promise(resolve => setTimeout(resolve, 500));
+		}
+
+		Genesys( "subscribe", "Messenger.opened", function( e ) {
+			$('#start_chat').val( 'Start Chat' );
+			$('#start_chat').removeAttr( 'disabled' );
+			$('#close').click();
+		});
+	})();
+
 	$('#start_chat').click( function() {
 		if ( genesys_checker == null && typeof( Genesys ) == 'undefined' ) {
 			var env = $('#user-select').val().split("||");
@@ -64,24 +54,9 @@ $(document).ready( function() {
 				ys = document.createElement('script'); ys.async = 1; ys.src = n; ys.charset = 'utf-8';
 
 				ys.onload = function() {
-					console.log( "Javascript Loaded: genesys.min.js" )
-					console.log( "Notice: Waiting for messenger.min.js..." )
-
 					$('#start_chat').val( 'Please wait...' );
-
-					window.genesys_checker = setInterval( function() {
-						if ( $('script[src$="/messenger.min.js"]').length == 1 || $('script[src$="/genesysvendors.min.js"]').length == 1 ) {
-							clearInterval( window.genesys_checker );
-							window.genesys_checker = null;
-
-							$('#close').click();
-							$('#start_chat').val( 'Start Chat' );
-
-							Genesys( "command", "Messenger.open" );
-						}
-					}, 1000 );
+					$('#start_chat').attr( 'disabled', 'disabled' );
 				}
-
 
 				document.head.appendChild(ys);
 			})(window, 'Genesys', 'https://apps.usw2.pure.cloud/genesys-bootstrap/genesys.min.js', {
