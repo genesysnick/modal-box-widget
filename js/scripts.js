@@ -27,18 +27,18 @@
 window.genesys_checker = null;
 
 $(document).ready( function() {
-	(async() => {
-		// while( $('script[src$="/messenger.min.js"]').length == 0 && $('script[src$="/genesysvendors.min.js"]').length == 0 ) {
-		while( !window.hasOwnProperty( "Genesys" ) ) {
-			await new Promise(resolve => setTimeout(resolve, 1000));
-		}
+	// (async() => {
+	// 	// while( $('script[src$="/messenger.min.js"]').length == 0 && $('script[src$="/genesysvendors.min.js"]').length == 0 ) {
+	// 	while( !window.hasOwnProperty( "Genesys" ) ) {
+	// 		await new Promise(resolve => setTimeout(resolve, 1000));
+	// 	}
 
-		Genesys( "subscribe", "Messenger.opened", function( e ) {
-			$('#start_chat').val( 'Start Chat' );
-			$('#start_chat').removeAttr( 'disabled' );
-			$('#close').click();
-		});
-	})();
+	// 	Genesys( "subscribe", "Messenger.opened", function( e ) {
+	// 		$('#start_chat').val( 'Start Chat' );
+	// 		$('#start_chat').removeAttr( 'disabled' );
+	// 		$('#close').click();
+	// 	});
+	// })();
 
 	$('#start_chat').click( function() {
 		if ( genesys_checker == null && typeof( Genesys ) == 'undefined' ) {
@@ -56,6 +56,25 @@ $(document).ready( function() {
 				ys.onload = function() {
 					$('#start_chat').val( 'Please wait...' );
 					$('#start_chat').attr( 'disabled', 'disabled' );
+
+					Genesys( "subscribe", "Messenger.ready", function( e ) {
+					    setTimeout( function() {
+						    	Genesys("command", "Messenger.open", {},
+								function(o){
+									// Success
+								},
+								function(o) {
+									// Fail
+								}
+							);
+						}, 2500 );
+					});
+
+					Genesys( "subscribe", "Messenger.opened", function( e ) {
+						$('#start_chat').val( 'Start Chat' );
+						$('#start_chat').removeAttr( 'disabled' );
+						$('#close').click();
+					});
 				}
 
 				document.head.appendChild(ys);
