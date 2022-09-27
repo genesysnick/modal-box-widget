@@ -28,9 +28,9 @@ window.genesys_checker = null;
 
 $(document).ready( function() {
 	(async() => {
-		while( $('script[src$="/messenger.min.js"]').length == 0 && $('script[src$="/genesysvendors.min.js"]').length == 0 ) {
-		// while( !window.hasOwnProperty( "Genesys" ) ) {
-			await new Promise(resolve => setTimeout(resolve, 500));
+		// while( $('script[src$="/messenger.min.js"]').length == 0 && $('script[src$="/genesysvendors.min.js"]').length == 0 ) {
+		while( !window.hasOwnProperty( "Genesys" ) ) {
+			await new Promise(resolve => setTimeout(resolve, 1000));
 		}
 
 		Genesys( "subscribe", "Messenger.opened", function( e ) {
