@@ -56,7 +56,7 @@ $(document).ready( function() {
 
 							Genesys( "command", "Messenger.open" );
 						}
-					}, 500 );
+					}, 1000 );
 				}
 
 
