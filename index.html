@@ -10,17 +10,18 @@ body {font-family: Arial, Helvetica, sans-serif;}
   font-family: Arial, sans-serif;
   letter-spacing: 3px;
   position: fixed;
-  top: 50%;
-  left: 50%;
   z-index: 99999;
+  right: 55px;
+  bottom: 0px;
+  transition: right 1s cubic-bezier(0, 1, 0.5, 1) 0s, transform 0.5s ease-in-out 0s;
 }
 .modalcontent {
-    position: absolute;
     top: 65%;
-    background: #fff;
+    background: #fdfdfd;
     width: 409px;
     padding: 20px;
-	border: #000 5px solid;
+	-webkit-box-shadow: 0 0 21px 2px rgb(0 0 0 / 20%);
+    box-shadow: 0 0 21px 2px rgb(0 0 0 / 20%);
 }
 
 #modallogo {
