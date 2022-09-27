@@ -109,6 +109,9 @@ button {
     color: #fff;
 }
 </style>
+
+  <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+  <script type="text/javascript" src="js/scripts.js"></script>
 </head>
 <body>
 <div id="header">
@@ -125,14 +128,14 @@ button {
 <div id="modal">
   <div class="modalcontent">
     <h2>Hello!</h2>
-    <form action="/action_page.php">
+    <form action="javascript:void(0);">
   <label for="user-select">What would you like to chat about?</label>
   <select name="user-select" id="user-select">
-    <option value="income">Income Maintenance</option>
-    <option value="child">Child Support</option>
+    <option value="usw2||56a5ee61-841f-4ef3-9025-b1ef401ac27d">Income Maintenance</option>
+    <option value="usw2||dc00344b-ad62-47be-9c5f-37caeb58a221">Child Support</option>
   </select>
   <br><br>
-  <input type="submit" value="Start Chat">
+  <input id="start_chat" type="button" value="Start Chat" />
 </form>
     <i id="close" class="close-modal fas fa-times"></i>
   </div>
@@ -143,32 +146,6 @@ button {
     document.getElementById("modal").style.display = "none";
     sessionStorage.setItem("modal", "none");
   };
-};
-</script>
-<script type="text/javascript" charset="utf-8">
-  (function (g, e, n, es, ys) {
-    g['_genesysJs'] = e;
-    g[e] = g[e] || function () {
-      (g[e].q = g[e].q || []).push(arguments)
-    };
-    g[e].t = 1 * new Date();
-    g[e].c = es;
-    ys = document.createElement('script'); ys.async = 1; ys.src = n; ys.charset = 'utf-8'; document.head.appendChild(ys);
-  })(window, 'Genesys', 'https://apps.usw2.pure.cloud/genesys-bootstrap/genesys.min.js', {
-    environment: 'usw2',
-    deploymentId: '56a5ee61-841f-4ef3-9025-b1ef401ac27d'
-  });
-</script>
-<button id="hackathon-widget-button" data-toggle="modal" data-target="#modal"></button>
-<script type="text/javascript">
-  function toggleMessenger(){
-    Genesys("command", "Messenger.open", {},
-      function(o){},  // if resolved
-      function(o){    // if rejected
-        Genesys("command", "Messenger.close");
-      }
-    );
-  }
 </script>
 </body>
 </html>
