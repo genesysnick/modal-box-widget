@@ -4,8 +4,9 @@
  * Contains custom script functionality for Web Messenger.
  */
 
-$(document).ready( function() {
+window.g_conversation_started = false;
 
+$(document).ready( function() {
 	$('#start_chat').click( function() {
 		if ( typeof( Genesys ) == 'undefined' ) {
 			var env = $('#user-select').val().split("||");
@@ -25,7 +26,7 @@ $(document).ready( function() {
 
 					Genesys( "subscribe", "Messenger.ready", function( e ) {
 					    setTimeout( function() {
-						    	Genesys("command", "Messenger.open", {},
+						    	Genesys( "command", "Messenger.open", {},
 								function(o){
 									// Success
 								},
@@ -37,9 +38,14 @@ $(document).ready( function() {
 					});
 
 					Genesys( "subscribe", "Messenger.opened", function( e ) {
+						$('#close').click();
+
 						$('#start_chat').val( 'Start Chat' );
 						$('#start_chat').removeAttr( 'disabled' );
-						$('#close').click();
+					});
+
+					Genesys( "subscribe", "Conversations.started", function( e ) {
+						window.g_conversation_started = true;
 					});
 				}
 
@@ -49,5 +55,29 @@ $(document).ready( function() {
 				deploymentId: env[1]
 			});
 		}
+	});
+
+	$('#hackathon-widget-button').click( function() {
+		if ( window.g_conversation_started ) {
+			// If conversation has already started, toggle Web Messenger.
+			Genesys( "command", "Messenger.open", {}, function() {
+
+			}, function () {
+				Genesys( "command", "Messenger.close" );
+			});
+		} else {
+			var modal = $($(this).data('target') );
+
+			modal
+				.css( 'visibility', 'visible' )
+				.removeClass( 'animate__slideOutDown' )
+				.addClass( 'animate__animated animate__slideInUp' );
+		}
+	});
+
+	$('#close').click( function() {
+		$('#modal')
+			.removeClass( 'animate__slideInUp' )
+			.addClass( 'animate__slideOutDown' );
 	});
 });
