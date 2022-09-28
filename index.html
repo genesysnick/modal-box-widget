@@ -23,10 +23,11 @@ body {font-family: Arial, Helvetica, sans-serif;}
 }
 .modalcontent {
     position: absolute;
-    background: #fff;
+    background: #fdfdfd;
     width: 409px;
     padding: 20px;
-	border: #000 5px solid;
+	-webkit-box-shadow: 0 0 21px 2px rgb(0 0 0 / 20%);
+    box-shadow: 0 0 21px 2px rgb(0 0 0 / 20%);
 }
 
 #modallogo {
@@ -100,6 +101,7 @@ button {
 #topic {
 	background-color: #23395d;
 	background-image: url(https://genesysnick.github.io/images/flair-navy-lite-huge-curtain.svg);
+	width: 100%;
 	height: 100%;
 	padding-top: 20px;
 	padding-bottom: 20px;
@@ -132,14 +134,18 @@ button {
 </div>
 <div id="modal">
   <div class="modalcontent">
-    <h2>Hello!</h2>
+    <h2>Live Chat</h2>
     <form action="javascript:void(0);">
   <label for="user-select">What would you like to chat about?</label>
   <select name="user-select" id="user-select">
-    <option value="usw2||56a5ee61-841f-4ef3-9025-b1ef401ac27d">Income Maintenance</option>
+    <option value="usw2||56a5ee61-841f-4ef3-9025-b1ef401ac27d">Mo HealthNet</option>
     <option value="usw2||dc00344b-ad62-47be-9c5f-37caeb58a221">Child Support</option>
+	<option value="usw2||56a5ee61-841f-4ef3-9025-b1ef401ac27d">SNAP</option>
+	<option value="usw2||56a5ee61-841f-4ef3-9025-b1ef401ac27d">Temporary Assistance</option>
+	<option value="usw2||56a5ee61-841f-4ef3-9025-b1ef401ac27d">Child Care</option>
   </select>
   <br><br>
+  <input id="cancel_chat" type="button" value="Cancel" />
   <input id="start_chat" type="button" value="Start Chat" />
 </form>
     <i id="close" class="close-modal fas fa-times"></i>
