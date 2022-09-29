@@ -14,7 +14,7 @@ body {font-family: Arial, Helvetica, sans-serif;}
   letter-spacing: 1px;
   position: fixed;
   right: 10px;
-  bottom: 10px;
+  bottom: 0px;
   z-index: 99999;
   width: 460px;
   height: 200px;
@@ -29,7 +29,9 @@ body {font-family: Arial, Helvetica, sans-serif;}
 	-webkit-box-shadow: 0 0 21px 2px rgb(0 0 0 / 20%);
     box-shadow: 0 0 21px 2px rgb(0 0 0 / 20%);
 }
-
+.modalheader {
+	border-bottom: solid 1px #dae1e8;
+}
 #modallogo {
   margin-top: 24px;
 }
@@ -173,20 +175,22 @@ button {
 </div>
 <div id="modal">
   <div class="modalcontent">
-    <img class="chat-icon" src="https://genesysnick.github.io/modal-box-widget/images/chat-icon.png" /><h2 class="modalheading">Live Chat</h2>
-    <form action="javascript:void(0);">
-  <label for="user-select">What would you like to chat about?</label>
-  <select name="user-select" id="user-select">
-    <option value="usw2||56a5ee61-841f-4ef3-9025-b1ef401ac27d">Mo HealthNet</option>
-    <option value="usw2||dc00344b-ad62-47be-9c5f-37caeb58a221">Child Support</option>
-	<option value="usw2||56a5ee61-841f-4ef3-9025-b1ef401ac27d">SNAP</option>
-	<option value="usw2||56a5ee61-841f-4ef3-9025-b1ef401ac27d">Temporary Assistance</option>
-	<option value="usw2||56a5ee61-841f-4ef3-9025-b1ef401ac27d">Child Care</option>
-  </select>
-  <br><br>
-  <input id="cancel_chat" type="button" value="Cancel" />
-  <input id="start_chat" type="button" value="Start Chat" />
-</form>
+	<div class="modalheader">
+		<img class="chat-icon" src="https://genesysnick.github.io/modal-box-widget/images/chat-icon.png" /><h2 class="modalheading">Live Chat</h2>
+	</div>
+		<form action="javascript:void(0);">
+		<label for="user-select">What would you like to chat about?</label>
+		<select name="user-select" id="user-select">
+			<option value="usw2||56a5ee61-841f-4ef3-9025-b1ef401ac27d">Mo HealthNet</option>
+			<option value="usw2||dc00344b-ad62-47be-9c5f-37caeb58a221">Child Support</option>
+			<option value="usw2||56a5ee61-841f-4ef3-9025-b1ef401ac27d">SNAP</option>
+			<option value="usw2||56a5ee61-841f-4ef3-9025-b1ef401ac27d">Temporary Assistance</option>
+			<option value="usw2||56a5ee61-841f-4ef3-9025-b1ef401ac27d">Child Care</option>
+		</select>
+		<br><br>
+		<input id="cancel_chat" type="button" value="Cancel" />
+		<input id="start_chat" type="button" value="Start Chat" />
+		</form>
     <i id="close" class="close-modal fas fa-times"></i>
   </div>
 </div>
